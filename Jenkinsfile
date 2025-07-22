@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:18-alpine'
+    }
+  }
 
   stages {
     stage('Clone Repo') {
@@ -8,7 +12,7 @@ pipeline {
       }
     }
 
-    stage('Build App') {
+    stage('Install Dependencies') {
       steps {
         sh 'npm install'
       }
